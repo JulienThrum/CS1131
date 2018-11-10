@@ -1,2 +1,2 @@
 # CS1131
-Accelerated Introduction to Programming
+Accelerated Introduction to Programming I

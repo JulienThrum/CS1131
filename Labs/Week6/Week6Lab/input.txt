@@ -1,0 +1,8 @@
+7
+Doc DOC@foo.com
+Dopey DOPEY@foo.com
+Bashful BASHFUL@foo.com
+Grumpy GRUMPY@foo.com
+Sneezy SNEEZY@foo.com
+Sleepy SLEEPY@foo.com
+Happy HAPPY@foo.com

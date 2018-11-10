@@ -6,6 +6,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+/**
+ * @author Julien Thrum
+ */
 public class Snake extends Application {
     double speed = 55; //refresh rate in millis for timelines
 

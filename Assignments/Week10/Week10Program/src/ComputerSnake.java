@@ -61,10 +61,37 @@ public class ComputerSnake extends Application {
         stage.setScene(scene);
         stage.setTitle("Computer Snake Game");
 
-        System.out.println("In Multiplayer Mode");
+        System.out.println("In Computer Mode");
         timeline = new Timeline(new KeyFrame(Duration.millis(speed), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                //handle direction change with AI for snake 2
+                if(d1 != null) {    //make sure human player can start the game
+                    if(getHeadX(body2) == appleX) {
+                        if(getHeadY(body2) < appleY && d2 != Snake.Direction.kUp) {
+                            d2 = Snake.Direction.kDown;
+                        } else if(getHeadY(body2) > appleY) {
+                            d2 = Snake.Direction.kUp;
+                        }
+                    } else if(getHeadX(body2) < appleX) {
+                        if(d2 != Snake.Direction.kLeft) {
+                            d2 = Snake.Direction.kRight;
+                        } else if(getHeadY(body2) < appleY && d2 != Snake.Direction.kUp) {
+                            d2 = Snake.Direction.kDown;
+                        } else if(getHeadY(body2) > appleY) {
+                            d2 = Snake.Direction.kUp;
+                        }
+                    } else if(getHeadX(body2) > appleX) {
+                        if(d2 != Snake.Direction.kRight) {
+                            d2 = Snake.Direction.kLeft;
+                        } else if(getHeadY(body2) < appleY && d2 != Snake.Direction.kUp) {
+                            d2 = Snake.Direction.kDown;
+                        } else if(getHeadY(body2) > appleY) {
+                            d2 = Snake.Direction.kUp;
+                        }
+                    }
+                }
+
                 multiCheckCollisions();
 
                 if(appleX == body1.get(body1.size() - 1).getX() && appleY == body1.get(body1.size() - 1).getY()) {
@@ -102,34 +129,6 @@ public class ComputerSnake extends Application {
                         d1 = Snake.Direction.kRight;
                     }
                 });
-
-                //handle direction change with AI for snake 2
-                if(d1 != null) {    //make sure human player can start the game
-                    if(getHeadX(body2) == appleX) {
-                        if(getHeadY(body2) < appleY && d2 != Snake.Direction.kUp) {
-                            d2 = Snake.Direction.kDown;
-                        } else if(getHeadY(body2) > appleY) {
-                            d2 = Snake.Direction.kUp;
-                        }
-                    } else if(getHeadX(body2) < appleX) {
-                        if(d2 != Snake.Direction.kLeft) {
-                            d2 = Snake.Direction.kRight;
-                        } else if(getHeadY(body2) < appleY && d2 != Snake.Direction.kUp) {
-                            d2 = Snake.Direction.kDown;
-                        } else if(getHeadY(body2) > appleY) {
-                            d2 = Snake.Direction.kUp;
-                        }
-                    } else if(getHeadX(body2) > appleX) {
-                        if(d2 != Snake.Direction.kRight) {
-                            d2 = Snake.Direction.kLeft;
-                        } else if(getHeadY(body2) < appleY && d2 != Snake.Direction.kUp) {
-                            d2 = Snake.Direction.kDown;
-                        } else if(getHeadY(body2) > appleY) {
-                            d2 = Snake.Direction.kUp;
-                        }
-                    }
-                }
-
             }
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);

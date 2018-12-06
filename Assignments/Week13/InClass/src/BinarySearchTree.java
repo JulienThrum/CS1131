@@ -32,6 +32,10 @@ public class BinarySearchTree<V extends Comparable<V>> {
         public void setRightChild(Node rightChild) {
             this.rightChild = rightChild;
         }
+
+        public String toString() {
+            return getValue().toString();
+        }
     }
 
     private Node root = null;
@@ -77,5 +81,29 @@ public class BinarySearchTree<V extends Comparable<V>> {
         else {
             throw new IllegalArgumentException("Value already exists in tree");
         }
+    }
+
+    public interface Visitor {
+        public void visit(BinarySearchTree.Node node);
+    }
+
+    public void preorder(Node node, Visitor v) {
+        if(node == null) {
+            return;
+        }
+        v.visit(node);
+        preorder(node.getLeftChild(), v);
+        preorder(node.getRightChild(), v);
+    }
+
+    public static void main(String[] args) {
+        BinarySearchTree<String> tree = new BinarySearchTree<>();
+        tree.add("D");
+        tree.add("G");
+        tree.add("B");
+        tree.add("A");
+        tree.preorder(tree.root, n -> {
+            System.out.println(n);
+        });
     }
 }

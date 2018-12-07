@@ -1,4 +1,4 @@
-public class BinarySearchTree<V extends Comparable<V>> {
+public class Chapter25<V extends Comparable<V>> {
     public class Node {
         private V value;
         private Node leftChild;
@@ -39,6 +39,7 @@ public class BinarySearchTree<V extends Comparable<V>> {
 
     private Node root = null;
     private int size = 0;
+    private int leaves = 0;
 
     public boolean isEmpty() {
         //return root == null;
@@ -101,7 +102,7 @@ public class BinarySearchTree<V extends Comparable<V>> {
     }
 
     public interface Visitor {
-        public void visit(BinarySearchTree.Node node);
+        public void visit(Chapter25.Node node);
     }
 
     public void preorder(Node node, Visitor v) {
@@ -131,8 +132,22 @@ public class BinarySearchTree<V extends Comparable<V>> {
         v.visit(node);
     }
 
+    private void zeroLeaves() {
+        leaves = 0;
+    }
+
+    public int getNumberOfLeaves() {
+        zeroLeaves();
+        inorder(root, e -> {
+            if(e.getLeftChild() == null && e.getRightChild() == null) {
+                leaves++;
+            }
+        });
+        return leaves;
+    }
+
     public static void main(String[] args) {
-        BinarySearchTree<String> tree = new BinarySearchTree<>();
+        Chapter25<String> tree = new Chapter25<>();
         tree.add("D");
         tree.add("G");
         tree.add("B");
